@@ -6,18 +6,17 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-// Creo la ventana prinicpal
-let mainWindow;
-
 const createWindow = () => {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  // Ventna principal.
+  const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  // Todas las interfaces estaran en rederers
+  mainWindow.loadFile(path.join(__dirname, '/renderers/index.html'));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
