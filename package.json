@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint 'src/**/*.js'",
-    "fix": "eslint --fix 'src/**/*.js'"
+    "fix": "eslint --fix 'src/**/*.js'",
+    "test": "npx jasmine"
   },
   "keywords": [],
   "author": {
@@ -57,6 +58,8 @@
     "electron": "10.1.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "jasmine": "^3.6.1",
+    "jsdom": "^16.4.0"
   }
 }
