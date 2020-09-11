@@ -1,72 +1,50 @@
+/* eslint-disable camelcase */
 const fs = require('fs');
 
-/** KeyStorage */
 class KeyStorage {
-  constructor(crypter, keyFilepath) {
+  constructor(crypter, key_filepath) {
     this.crypter = crypter;
-    this.keyFilepath = keyFilepath;
-    this.dataObject = null;
+    this.key_filepath = key_filepath;
+    this.data_object = null;
   }
 
-  /**
-   * Abre el fichero de almacén
-   * @param {string} key
-   */
   openDataFile(key) {
     this.crypter.setKey(key);
 
     // Si el fichero no existe lo creamos
-    if (!fs.existsSync(this.keyFilepath)) {
-      fs.writeFileSync(this.keyFilepath, this.crypter.encrypt('{}'));
+    if (!fs.existsSync(this.key_filepath)) {
+      fs.writeFileSync(this.key_filepath, this.crypter.encrypt('{}'));
     }
 
-    const data = fs.readFileSync(this.keyFilepath, 'utf8');
-    const decodedData = this.crypter.decrypt(data);
+    const data = fs.readFileSync(this.key_filepath, 'utf8');
+    const decoded_data = this.crypter.decrypt(data);
 
     // Lanza una excepción si falla
 
-    this.dataObject = JSON.parse(decodedData);
+    this.data_object = JSON.parse(decoded_data);
   }
 
-  /**
-   * Añade un registro
-   * @param {*} keyRegister
-   */
-  add(keyRegister) {
-    Object.assign(this.dataObject, keyRegister);
+  add(key_register) {
+    Object.assign(this.data_object, key_register);
   }
 
-  /**
-   * Salva el almacen
-   */
   save() {
-    const dataJSON = JSON.stringify(this.dataObject);
-    const encodedData = this.crypter.encrypt(dataJSON);
+    const data_json = JSON.stringify(this.data_object);
+    const encoded_data = this.crypter.encrypt(data_json);
 
-    fs.writeFileSync(this.keyFilepath, encodedData, 'utf8');
+    fs.writeFileSync(this.key_filepath, encoded_data, 'utf8');
   }
 
-  /**
-   * Encuetra una clave
-   * @param {string} name
-   */
   find(name) {
-    return this.dataObject[name];
+    return this.data_object[name];
   }
 
-  /**
-   * Obtiene todos
-   */
   getAll() {
-    return this.dataObject;
+    return this.data_object;
   }
 
-  /**
-   * borra
-   * @param {string} name
-   */
   delete(name) {
-    return delete this.dataObject[name];
+    return delete this.data_object[name];
   }
 }
 

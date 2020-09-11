@@ -1,6 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { BrowserWindow } = require('electron');
+
 /**
- * Nos sirve para crear y lanzar una ventana modal
+ * Ventana Modal
  * browserWindow, la panatalla padre
  * width, anchura pantalla modal
  * height altura pantalla modal
@@ -19,7 +21,6 @@ function createFormModal(browserWindow, width, height, url) {
 
 // browserWindow es la pantalla sobre la que se quiere crear el menú
 const mainMenu = (browserWindow) => {
-  // console.log(browserWindow);
   const templateMenu = [
     {
       label: 'Almacenes',
@@ -28,8 +29,6 @@ const mainMenu = (browserWindow) => {
           label: 'Crear almacén',
           accelerator: 'CommandOrControl+N',
           click() {
-            // console.log('Crear almacén');
-            // Lanzamos crear almacén
             const url = `file://${__dirname}/renderers/form_create_filestorage.html`;
             createFormModal(browserWindow, 400, 350, url);
           },
@@ -38,8 +37,6 @@ const mainMenu = (browserWindow) => {
           label: 'Cargar almacén',
           accelerator: 'CommandOrControl+L',
           click() {
-            // console.log('Crear almacén');
-            // Lanzamos cargar almacen
             const url = `file://${__dirname}/renderers/form_load_filestorage.html`;
             createFormModal(browserWindow, 400, 350, url);
           },
@@ -57,8 +54,6 @@ const mainMenu = (browserWindow) => {
           label: 'Añadir clave',
           accelerator: 'CommandOrControl+B',
           click() {
-            // console.log('Crear clave');
-            // Lanzamos editar clave
             const url = `file://${__dirname}/renderers/form_add_keyregister.html`;
             createFormModal(browserWindow, 500, 550, url);
           },
@@ -67,20 +62,20 @@ const mainMenu = (browserWindow) => {
           label: 'Editar clave',
           accelerator: 'CommandOrControl+E',
           click() {
-            console.log('Editar clave');
+            browserWindow.webContents.send('edit-keyregister');
           },
         },
         {
           label: 'Eliminar clave',
           accelerator: 'CommandOrControl+D',
           click() {
-            console.log('Eliminar clave');
+            browserWindow.webContents.send('delete-keyregister');
           },
         },
       ],
     },
     {
-      label: 'Ver',
+      label: 'View',
       submenu: [
         { role: 'reload' },
         { role: 'forcereload' },

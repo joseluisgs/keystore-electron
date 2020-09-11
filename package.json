@@ -3,59 +3,27 @@
   "productName": "keystore-electron",
   "version": "1.0.0",
   "description": "Ejemplo de apliación realizada con Electrón y JS",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "start": "electron src/main.js",
     "lint": "eslint 'src/**/*.js'",
     "fix": "eslint --fix 'src/**/*.js'",
     "test": "npx jasmine"
   },
-  "keywords": [],
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
   "author": {
     "name": "joseluisgs",
     "email": "joseluisgonsan@gmail.com"
   },
   "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "keystore_electron"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.53",
-    "@electron-forge/maker-deb": "^6.0.0-beta.53",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.53",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.53",
-    "@electron-forge/maker-zip": "^6.0.0-beta.53",
-    "electron": "10.1.1",
+    "electron": "^1.8.8",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",

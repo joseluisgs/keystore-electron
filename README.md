@@ -23,12 +23,6 @@ npm install
 npm run start
 ```
 
-### Compiles and minifies for production
-
-```
-npm run publish
-```
-
 ### Lints and fixes files
 
 ```

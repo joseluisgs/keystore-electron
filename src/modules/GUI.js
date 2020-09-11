@@ -1,6 +1,6 @@
-/**
- * Controlador de la pantalla principal, index.html
- */
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
+/* eslint-disable no-undef */
 class GUI {
   constructor(document) {
     this.document = document;

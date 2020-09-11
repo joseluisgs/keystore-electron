@@ -1,8 +1,5 @@
 const crypto = require('crypto');
 
-/**
- * Clase cifrador
- */
 class Crypter {
   constructor() {
     this.hash = crypto.createHash('sha256');
@@ -11,18 +8,10 @@ class Crypter {
     this.decipher = null;
   }
 
-  /**
-   * Establece la clave
-   * @param {string} key
-   */
   setKey(key) {
     this.key = this.hash.update(key).digest('hex');
   }
 
-  /**
-   * Encripta
-   * @param {string} text
-   */
   encrypt(text) {
     this.cipher = crypto.createCipher('aes192', this.key);
     let encrypted = this.cipher.update(text, 'utf8', 'hex');
@@ -30,10 +19,6 @@ class Crypter {
     return encrypted;
   }
 
-  /**
-   * Desecncripta
-   * @param {string} text
-   */
   decrypt(text) {
     this.decipher = crypto.createDecipher('aes192', this.key);
     let decrypted = this.decipher.update(text, 'hex', 'utf8');
